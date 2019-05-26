@@ -1,7 +1,7 @@
 {
   "name": "skeleton-css-prototype",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prototype to APPC Tool",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",

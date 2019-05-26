@@ -20,6 +20,9 @@ function populateTable() {
 
     tableBody.appendChild(row);
   });
+
+  //put in order;
+  icaoList.sort(compareByFullName);
 }
 
 // Search Table Logic Below:
@@ -66,6 +69,11 @@ function debounce(func, wait, immediate) {
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
+}
+
+// Table sort function by FullName
+function compareByFullName(a, b) {
+  return a.fullName > b.fullName ? 1 : -1;
 }
 
 // Initialize the table with table.
