@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif;
+  background: #252525;
+  color: #f2f2f2;
+  width: 100%;
+}
+
+.center-me {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+input {
+  color: #252525;
+}
