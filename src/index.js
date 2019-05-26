@@ -3,6 +3,7 @@ import { icaoListJSON } from "./icao";
 const $ = require("jQuery");
 let icaoList = icaoListJSON;
 
+// Testing comment
 function populateTable() {
   // Get the table ready
   let tableBody = document.querySelector("#icaoTable > tbody");
