@@ -33,9 +33,12 @@ export const icaoToIataJSON = {
 
   OAKN: "KDH",
   OACC: "CCN",
+  OAJL: "JAA",
+  OAKB: "KBL",
   OASA: "AZ3",
   OAZI: "AZ1",
   OBBI: "BAH",
+  OBBS: "HSA",
   OAIX: "OA1",
   OKAS: "KEZ",
   OKBK: "KWI",
