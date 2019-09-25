@@ -80,30 +80,44 @@ function compareByFullName(a, b) {
 // Initialize the table with table.
 populateTable();
 
+// Listen for button press on getting ICAO to IATA.
 var submitICAOButton = document.getElementById("submitICAO");
-submitICAOButton.onclick = function() {
+submitICAOButton.onclick = convertIcaoToIATA;
+
+// Listen for "ENTER" key being pressed on ICAO routing input box.
+$("#icaoRouting").on("keypress", function(event) {
+  if (event.which === 13) {
+    convertIcaoToIATA();
+  }
+});
+
+// Convert ICAO(s) to IATA, separated by dashes.
+function convertIcaoToIATA() {
+  // Get entered string from the input box and split it by a delimited space
   var icaoList = document.getElementById("icaoRouting").value;
   var icaoArray = icaoList.split(" ");
-  console.log("The icaioValue is: ", icaoArray);
 
+  // Remember what the last translated ICAO was. If the last one is the same
+  // As the next one, then skip it, we've done that one already.
   var lastIcao = "";
 
   var translatedLocations = [];
   icaoArray.forEach((icao, index) => {
+    icao = icao.toUpperCase();
     if (icao.length > 3) {
-      console.log(icao, index);
       if (lastIcao !== icao) {
         lastIcao = icao;
 
         var iataLocation = icaoToIataJSON[icao];
         if (iataLocation) {
           translatedLocations.push(iataLocation);
+        } else {
+          // Then it is a station not in database. Put something.
+          translatedLocations.push(`?${icao}`);
         }
       }
     }
   });
-
-  console.log("The IATA locations: ", translatedLocations);
 
   // Now we have to create a string with the locations, separated by a dash
   var iata = "";
@@ -115,5 +129,29 @@ submitICAOButton.onclick = function() {
     iata += icao;
   });
 
+  // Set the IATA value in the input box.
   document.getElementById("iataRouting").value = iata;
+}
+
+// Listen for button click to copy IATA routing to clipboard.
+var iataButtonClipboard = document.getElementById("iataClipboard");
+iataButtonClipboard.onclick = function() {
+  var copyText = document.getElementById("iataRouting");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  // Tell user that it copied by changing value of button text
+  iataButtonClipboard.innerHTML = "Copied!";
+
+  // Change button value text back to default, and unselect the text.
+  setTimeout(() => {
+    iataButtonClipboard.innerHTML = "Copy";
+    // copyText.select();
+    // copyText.setSelectionRange(0, 0);
+  }, 1000);
 };
