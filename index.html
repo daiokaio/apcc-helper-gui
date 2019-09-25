@@ -6,7 +6,7 @@
 	<!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<meta charset="utf-8">
-	<title>Your page title here :)</title>
+	<title>APCC Station</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -30,22 +30,41 @@
 </head>
 
 <body>
-	<script src="src/index.js"></script>
-
 	<!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<div class="container">
+		<!-- ICAO to IATA Compiler -->
+		<div class="row">
+			<h1>ICAO to IATA Routing</h1>
+		</div>
+
+		<div class="row">
+			<div class="eleven columns">
+					<label for="exampleEmailInput">ICAO Routing</label>
+			 </div>
+		</div>
+
+		<div class="row">
+			<input class="ten columns" type="text" placeholder="ICAO Routing" id="icaoRouting">
+			<button type="button" class="button-primary" id="submitICAO">Submit</button> 
+		</div>
+
+		<div class="row">
+			<label>IATA Routing</label>
+			<input class="u-full-width" type="text" placeholder="ICAO Routing" id="iataRouting">
+		</div>
+
 		<div class="row">
 			<div class="eleven colums">
 				<h1 class="center-me">My Locations</h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="six columns">
-				<p>Don't know about here.</p>
+			<div class="u-pull-left">
+				<p>'Something'</p>
 			</div>
-			<div class="six columns">
-				<p>Maybe Hours here?</p>
+			<div class="u-pull-right">
+				<p>'zulu here?'</p>
 			</div>
 		</div>
 
@@ -68,11 +87,14 @@
 			<tbody>
 			</tbody>
 		</table>
+
+		</br>
+		
 	</div>
 
 	<!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
+	<script type="text/javascript" src="scripts/logic.js" charset="utf-8"></script>
 </body>
 
 </html>

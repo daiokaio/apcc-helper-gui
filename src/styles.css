@@ -14,3 +14,8 @@ body {
 input {
   color: #252525;
 }
+
+.button-primary {
+  box-sizing: border-box;
+  margin-left: 10px;
+}

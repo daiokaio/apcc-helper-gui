@@ -1,4 +1,5 @@
 import { icaoListJSON } from "./icao";
+import { icaoToIataJSON } from "./icaoToIATA";
 
 const $ = require("jQuery");
 let icaoList = icaoListJSON;
@@ -78,3 +79,41 @@ function compareByFullName(a, b) {
 
 // Initialize the table with table.
 populateTable();
+
+var submitICAOButton = document.getElementById("submitICAO");
+submitICAOButton.onclick = function() {
+  var icaoList = document.getElementById("icaoRouting").value;
+  var icaoArray = icaoList.split(" ");
+  console.log("The icaioValue is: ", icaoArray);
+
+  var lastIcao = "";
+
+  var translatedLocations = [];
+  icaoArray.forEach((icao, index) => {
+    if (icao.length > 3) {
+      console.log(icao, index);
+      if (lastIcao !== icao) {
+        lastIcao = icao;
+
+        var iataLocation = icaoToIataJSON[icao];
+        if (iataLocation) {
+          translatedLocations.push(iataLocation);
+        }
+      }
+    }
+  });
+
+  console.log("The IATA locations: ", translatedLocations);
+
+  // Now we have to create a string with the locations, separated by a dash
+  var iata = "";
+  translatedLocations.forEach((icao, index) => {
+    if (index !== 0) {
+      iata += "-";
+    }
+
+    iata += icao;
+  });
+
+  document.getElementById("iataRouting").value = iata;
+};
